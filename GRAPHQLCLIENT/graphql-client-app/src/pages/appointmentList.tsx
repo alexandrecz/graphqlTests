@@ -1,16 +1,6 @@
 import React from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useAppointments } from '../hooks/useAppointments';
 
-const GET_APPOINTMENTS = gql`
-  query {
-    appointments {
-      title
-      customer {
-        name
-      }
-    }
-  }
-`;
 
 interface AppointmentsProps {
   title: string;
@@ -20,7 +10,7 @@ interface AppointmentsProps {
 
 export default function AppointmentList() {
 
-  const { error, data, loading } = useQuery(GET_APPOINTMENTS);
+  const { error, data, loading} = useAppointments();
   if (loading) return <div>Spinner....</div>
 
   if (error) return <div>Something wrong</div>
